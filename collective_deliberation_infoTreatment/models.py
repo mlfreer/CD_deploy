@@ -276,7 +276,7 @@ class Player(BasePlayer):
     # information variables
     private_evidence = models.IntegerField()
     str_private_evidence = models.StringField(initial='None') # evidence in words (for presentation)
-    publicized_evidence = models.IntegerField(initial='None')
+    publicized_evidence = models.IntegerField(initial=0)
     
     # profit variables
     earnings = models.CurrencyField(initial=0)
