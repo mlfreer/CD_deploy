@@ -19,9 +19,9 @@ class Constants(BaseConstants):
     num_rounds = 3
     endowment = 100
     multiplier = 1.8
-    disclose_cost = cu(5)
-    high_payoff = cu(100)
-    low_payoff = cu(10)
+    disclose_cost = 5
+    high_payoff = 100
+    low_payoff = 10
     weights_evidences = (0.6, 0.4)
     paying_round= random.randint(1,15)
 
