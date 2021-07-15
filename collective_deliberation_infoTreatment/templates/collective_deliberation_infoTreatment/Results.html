@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+
+<p>
+
+    Results: 
+
+    <br>Gray project received {{votes_gray}} votes
+
+    <br> Orange project receved {{votes_orange}} votes
+
+    <br> Your group decided to invest in the {{guess}} project. 
+
+    <p>
+
+    <br> Your group's guess is {{player.group.correct_guess}} and your investment delivered a {{player.earnings}} reward for you.
+</p>
+
+
+
+
+{% formfields %}
+
+{% next_button %}
+
+{% endblock %}
