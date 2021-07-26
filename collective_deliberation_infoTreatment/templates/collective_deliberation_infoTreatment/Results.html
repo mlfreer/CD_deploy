@@ -5,26 +5,68 @@
 
 {% block content %}
 
-<p>
-
-    Results: 
-
-    <br>Gray project received {{votes_gray}} votes
-
-    <br> Orange project receved {{votes_orange}} votes
-
-    <br> Your group decided to invest in the {{guess}} project. 
-
-    <p>
-
-    <br> Your group's guess is {{player.group.correct_guess}} and your investment delivered a {{player.earnings}} reward for you.
-</p>
 
 
+<font size="4">
+<table style="width:90%" font=5>
+    <tr style="border-bottom:1px solid black">
+        <td> You are player  </td>
+        <td> <b> {{player.MyNumber}} </b> </td>
+    </tr>
+    
 
+    <tr>
+        <td>Gray project received </td>
+        <td> <b> {{votes_gray}} votes </b></td>
+    </tr>
 
-{% formfields %}
+    <tr>
+        <td> Orange project received  </td>
+        <td> <b> {{votes_orange}} votes </b></td>
+    </tr>
 
-{% next_button %}
+    <tr style="border-bottom:1px solid black">
+        <td> Your group's guess is </td>
+        {% if player.group.correct_guess %}
+        <td> <b> Correct </b></td>
+        {% else %}
+        <td> <b> Wrong </b></td>
+        {% endif %}
+    </tr>
+
+    <tr>
+        <td> Earnings from the project are </td>
+        {% if player.group.correct_guess %}
+        <td> <b> {{Constants.high_payoff}} </b></td>
+        {% else %}
+        <td> <b> {{Constants.high_payoff}} </b></td>
+        {% endif %}
+    </tr>
+
+    <tr style="border-bottom:1px solid black"> 
+        <td> Your costs associated with disclosure </td>
+        {% if player.disclose %}
+        <td> <b> {{Constants.disclose_cost}} </b></td>
+        {% else %}
+        <td> <b> 0 </b></td>
+        {% endif %}
+    </tr>
+
+    <tr style="border-bottom:1px solid black">
+        <td> Your earnings are </td>
+        <td> <b> {{player.earnings}} </b></td>
+    </tr>
+
+    <tr style="border-bottom:1px solid black">
+        <td> </td> 
+        <td> </td> 
+    </tr>
+    <tr align="right">
+        <td> </td>
+        <td> {% next_button %} </td>
+
+    </tr>
+</table>
+
 
 {% endblock %}
