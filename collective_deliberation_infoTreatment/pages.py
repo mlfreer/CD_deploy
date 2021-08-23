@@ -159,26 +159,15 @@ class Results(Page):
 
 page_sequence = [
     Welcome,
-    # beginning of the three repetition of the opinion poll
-    # first repition
     OpinionPoll,
     OpinionPollWaitPage,
     Disclosure,
     DisclosureWaitPage,
-    # second repition
     OpinionPoll,
     OpinionPollWaitPage,
     Disclosure,
-    DisclosureWaitPage,
-    # third one
-    OpinionPoll,
-    OpinionPollWaitPage,
-    Disclosure,
-    DisclosureWaitPage, 
-    # voting
+    DisclosureWaitPage, # this part to be repeated 3 times after the first one is figured out. 
     Voting,
     VotingWaitPage,
-    # results
     Results
-    # still need to include pot-experimental tasks and final resutls with payment
 ]
