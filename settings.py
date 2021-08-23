@@ -9,6 +9,11 @@ SESSION_CONFIGS = [
         num_demo_participants=3, 
         app_sequence=['collective_deliberation_infoTreatment']
         ),
+    dict(
+        name='No_Info_treatment',
+        num_demo_participants=3,
+        app_sequence=['No_info_treatment']
+        ),
     ]
 
 # e.g. EUR, GBP, CNY, JPY
