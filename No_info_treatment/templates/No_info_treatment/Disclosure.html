@@ -1,0 +1,78 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %} Player {{player.MyNumber}} Disclosure {% endblock %}
+
+{% block content %}
+
+<font size="4">
+<table style="width:90%" font=5>
+    <tr>
+        <td> You are player  </td>
+        <td> <b> {{player.MyNumber}} </b> </td>
+    </tr>
+    <tr  style="border-bottom:1px solid black">
+        <td> Your private evidence is </td>
+        <td> <b> {{ player.str_private_evidence }} </b> </td>
+    </tr>
+    <tr>
+        <td> Evidence disclosed by Player 1 </td>
+        <td> <b> {{ player.group.disclosure_information1 }} </b> </td>
+    </tr>
+    <tr>
+        <td> Evidence disclosed by Player 2 </td>
+        <td> <b> {{ player.group.disclosure_information2 }} </b> </td>
+    </tr>
+    <tr>
+        <td> Evidence disclosed by Player 3 </td>
+        <td> <b> {{ player.group.disclosure_information3 }} </b> </td>
+    </tr>
+    <!--
+    <tr style="border-bottom:1px solid black">
+        <td> Initial Public Evidence </td>
+        <td> <b> {{ public_signal }} </b></td>
+    -->
+    </tr>
+    <tr>
+        <td> Player 1 chosen in opinion poll </td>
+        <td> <b> {{ opinion1 }} </b> </td>
+    </tr>
+    <tr>
+        <td> Player 2 chosen in opinion poll</td>
+        <td> <b> {{ opinion2 }} </b> </td>
+    </tr>
+    <tr>
+        <td> Player 3 chosen in opinion poll </td>
+        <td> <b> {{ opinion3 }} </b> </td>
+    </tr>
+
+    <tr style="border-bottom:1px solid black">
+        <td> </td> <td> </td> 
+    </tr>
+    {% if player.type >= 1  %}
+    {% if player.disclose <= 0%}
+    <tr>
+        <td> Would you like to disclose your private evidence? </td>
+        <td> <b> {% formfield player.disclose label="" %} </b> </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td> You have already disclosed your private evidence </td>
+        <td> </td>
+    </tr>
+    {% endif %}
+    {% else %}
+    <tr>
+        <td> You do not have private evidence. </td>
+        <td> </td>
+    </tr>
+    {% endif %}
+    <tr align="right">
+        <td> </td>
+        <td> {% next_button %} </td>
+    </tr>
+</table>
+
+{{ form.disclose.errors }}
+
+{% endblock %}
