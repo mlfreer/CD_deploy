@@ -5,20 +5,34 @@ LANGUAGE_CODE = 'en'
 
 SESSION_CONFIGS = [
     dict(
-        name='collective_deliberation_infoTreatment', 
+        name='Public_Info_Treatment', 
         num_demo_participants=3, 
         app_sequence=['collective_deliberation_infoTreatment']
         ),
     dict(
-        name='No_info_treatment', 
+        name='No_Public_Info_Treatment', 
         num_demo_participants=3, 
         app_sequence=['No_info_treatment']
         ),    
     ]
 
+ROOMS = [
+    dict(
+        name='GMULAB',
+        display_name='GMU ECON LAB',
+        participant_label_file='_rooms/GMU_lab.txt',
+        use_secure_urls=False
+    ),
+]
+
+
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
-USE_POINTS = True
+REAL_WORLD_CURRENCY_CODE = ''
+USE_POINTS = False
+
+DEBUG_INFO = False
+OTREE_PRODUCTION = True
+
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable

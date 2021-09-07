@@ -16,14 +16,19 @@ doc = "The experiment consists of 15 rounds. Before making any decision, subject
 class Constants(BaseConstants):
     name_in_url = 'No_info_treatment'
     players_per_group = 3
-    num_rounds = 3
+    num_rounds = 15
     endowment = 100
     multiplier = 1.8
     disclose_cost = 5
     high_payoff = 100
     low_payoff = 10
     weights_evidences = (0.6, 0.4)
-    paying_round= random.randint(1,15)
+
+    paying_round= random.randint(1,num_rounds)
+    exchange_rate = 5 #exchange rate tokens to dollars
+    showup_fee = cu(10)
+ 
+
 
 class Subsession(BaseSubsession):
       
@@ -225,29 +230,12 @@ class Group(BaseGroup):
             for p in players:
                 p.earnings = Constants.high_payoff - p.disclose*Constants.disclose_cost
         # this function seems to be working okay
-        
-    # why do we need this function? 
-    #def aggregate_results(self):
-    #    """ 
-    #    Retrieves opinion, disclosure, and voting decisions for every player.
-    #    """
-    # How to define IDs within my experiment. Session and Particiants ID? 
-       # yield['session', 'participant', 'round', 'evidence', 'payoff']
 
-       #for p in self.get_players():
-            #participant = p.participant
-            #session = p.session
-            #yield[session.code, participant.code, p.round_number, p.id_in_group, p.payoff]
-    
-    # let's define this later... there may be some post-experimental tasks as well
-    #def final_payoff(self):
-    #    """
-    #    Computes the final payoff
-    #    """
-    #    for p in self.get_players():
-    #        for r in p.round_number :
-    #            if r == Constants.paying_round:
-    #                p.payment = p.earnings
+    def set_final_profit(self):
+        for p in self.get_players():
+            player_in_paying_round = p.in_round(Constants.paying_round)
+            p.final_earnings = player_in_paying_round.earnings/Constants.exchange_rate
+            p.final_profit = p.final_earnings + Constants.showup_fee
 
 
 class Player(BasePlayer):
@@ -281,7 +269,12 @@ class Player(BasePlayer):
     # profit variables
     earnings = models.CurrencyField(initial=0)
     # NB! there are standard variables like profit and final_profit... we may want to employ them [check it out, but we may not even need to define them]
+    final_earnings = models.CurrencyField(initial=0) # final earnings for the profit formation
+    final_profit = models.CurrencyField(initial=0) # final profit including the show up fee
 
+    # paying round:
+    paying_round = models.IntegerField(initial=0)
+    
     # type variables
     MyNumber = models.IntegerField(initial=0) #my number in group
     type = models.IntegerField(initial=0) # 1 informed and 0 uninformed player

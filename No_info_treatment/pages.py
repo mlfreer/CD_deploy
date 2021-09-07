@@ -155,18 +155,36 @@ class Results(Page):
         )
     pass
 
+class FinalWaitPage(WaitPage):
+    def is_displayed(self):
+        return self.group.subsession.round_number == Constants.num_rounds
+    def after_all_players_arrive(self):
+        if self.group.subsession.round_number == Constants.num_rounds:
+            self.group.set_final_profit()
+
+class FinalPage(Page):
+    def is_displayed(self):
+        return self.player.subsession.round_number == Constants.num_rounds
+    template_name = 'collective_deliberation_infoTreatment/FinalResults.html'
+
 
 page_sequence = [
     Welcome,
-    OpinionPoll,
+    OpinionPoll, # first iteration
     OpinionPollWaitPage,
     Disclosure,
     DisclosureWaitPage,
-    OpinionPoll,
+    OpinionPoll, # second iteration
     OpinionPollWaitPage,
     Disclosure,
-    DisclosureWaitPage, # this part to be repeated 3 times after the first one is figured out. 
-    Voting,
+    DisclosureWaitPage,
+#    OpinionPoll, # third iteration
+#    OpinionPollWaitPage,
+#    Disclosure,
+#    DisclosureWaitPage, # end of deliberation stage
+    Voting, 
     VotingWaitPage,
-    Results
+    Results,
+    FinalWaitPage, # once the experiment is finished
+    FinalPage
 ]

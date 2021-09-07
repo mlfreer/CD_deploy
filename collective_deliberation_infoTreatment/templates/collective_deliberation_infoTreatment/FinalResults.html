@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %} 
+Final Results
+{% endblock %}
+
+
+{% block content %}
+
+<font size="4">
+    <table style="width:90%" font=5>
+        <tr style="border-top:1px solid black; border-bottom:1px solid black">
+            <td> The round chosen for payment is  </td>
+            <td> <b> {{Constants.paying_round}} </b> </td>
+        </tr>
+        <tr>
+            <td> In this round you have earned </td>
+            <td> ${{player.final_earnings}} </td>
+        </tr>
+        <tr style="border-bottom:1px solid black">
+            <td> The show up fee for this experiment is </td>
+            <td> ${{ Constants.showup_fee }} </td>
+        </tr>
+        <tr style="border-bottom:1px solid black">
+            <td> Your final earnings from the experiment are </td>
+            <td> ${{player.final_profit}} </td>
+        </tr>
+    </table>
+
+</font>
+
+
+
+{% endblock %}
