@@ -10,6 +10,11 @@ Final Results
 
 <font size="4">
     <table style="width:90%" font=5>
+        <table style="width:90%" font=5>
+        <tr style="border-top:1px solid black">
+            <td> Your label is (please record it for payment) </td>
+            <td> <b> {{participant.label}} </b></td>
+        </tr>
         <tr style="border-top:1px solid black; border-bottom:1px solid black">
             <td> The round chosen for payment is  </td>
             <td> <b> {{Constants.paying_round}} </b> </td>
@@ -24,7 +29,7 @@ Final Results
         </tr>
         <tr style="border-bottom:1px solid black">
             <td> Your final earnings from the experiment are </td>
-            <td> ${{player.final_profit}} </td>
+            <td> <b>${{player.final_profit}}</b> </td>
         </tr>
     </table>
 

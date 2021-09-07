@@ -236,6 +236,7 @@ class Group(BaseGroup):
             player_in_paying_round = p.in_round(Constants.paying_round)
             p.final_earnings = player_in_paying_round.earnings/Constants.exchange_rate
             p.final_profit = p.final_earnings + Constants.showup_fee
+            p.payoff = p.final_profit
 
 
     
