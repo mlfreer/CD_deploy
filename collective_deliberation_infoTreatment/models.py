@@ -16,7 +16,7 @@ doc = "The experiment consists of 15 rounds. Before making any decision, subject
 class Constants(BaseConstants):
     name_in_url = 'collective_deliberation_infoTreatment'
     players_per_group = 3
-    num_rounds = 15
+    num_rounds = 2
 
     endowment = cu(100)
 
