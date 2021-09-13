@@ -16,7 +16,7 @@ doc = "The experiment consists of 15 rounds. Before making any decision, subject
 class Constants(BaseConstants):
     name_in_url = 'No_info_treatment'
     players_per_group = 3
-    num_rounds = 15
+    num_rounds = 2
     endowment = 100
     multiplier = 1.8
     disclose_cost = 5
@@ -259,6 +259,7 @@ class Player(BasePlayer):
     opinion = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Gray'], [0, 'None']], label='Which project do you prefer?', widget=widgets.RadioSelectHorizontal) # change name everywhere else
     disclose = models.IntegerField(choices=[[1, 'Yes'], [0, 'No']], label='Would you like to disclose your private evidence?', widget=widgets.RadioSelectHorizontal, default= 0, blank=True)
     vote = models.IntegerField(choices=[[0, 'Orange'], [1, 'Gray']], label='Which project would you like to get implemented?', widget=widgets.RadioSelectHorizontal)
+    iteration = models.IntegerField(initial=0)
     # you also need to track whether the subject has already disclosed information or not
     # the idea is that we can repeat the same page but for that we need to record the "past decision"
 
@@ -267,6 +268,7 @@ class Player(BasePlayer):
     str_private_evidence = models.StringField(initial='None') # evidence in words (for presentation)
     publicized_evidence = models.IntegerField(initial=0)
     
+
     # profit variables
     earnings = models.CurrencyField(initial=0)
     # NB! there are standard variables like profit and final_profit... we may want to employ them [check it out, but we may not even need to define them]
@@ -280,10 +282,6 @@ class Player(BasePlayer):
     MyNumber = models.IntegerField(initial=0) #my number in group
     type = models.IntegerField(initial=0) # 1 informed and 0 uninformed player
     
-
-    # also it may make sense to make it for +1 and for -1 ? 
-    # Edgar: I dont think so. I think it should be simply equal to the private evidence when it is disclosed. 
-    # I moved it to the player level so i dont need to define a set but a single value.
 
     def get_mynumber(self):
         """

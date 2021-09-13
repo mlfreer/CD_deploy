@@ -84,7 +84,7 @@ class Disclosure(Page):
     # include vars_for_template
     template_name = 'collective_deliberation_infoTreatment/Disclosure.html'
     form_model = 'player'
-    form_fields = ['disclose']
+    form_fields = ['disclose'] 
     def vars_for_template(player):
         public_signal = player.group.str_public_evidence
         #private_signal = player.str_private_evidence
@@ -98,6 +98,9 @@ class Disclosure(Page):
             opinion3 = opinion3,
             #private_signal = private_signal,
             )
+    def before_next_page(self):
+        if self.player.disclose > 0:
+            self.player.iteration = self.player.iteration + 1
 
 class DisclosureWaitPage(WaitPage):
     def after_all_players_arrive(self): 
