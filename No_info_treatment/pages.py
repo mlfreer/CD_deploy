@@ -98,20 +98,24 @@ class Disclosure(Page):
             #private_signal = private_signal,
             )
     def before_next_page(self):
-        if self.player.disclose = 0:
-            self.player.iteration = self.player.iteration - 1
-
+        if self.player.disclose > 0 :
+            self.player.iteration =  self.player.iteration + 1
+       
 class DisclosureWaitPage(WaitPage):
     def after_all_players_arrive(self): 
         self.group.get_results_disclose()
     # incude after_all_players_arrive function
-
 
 class Voting(Page):
     template_name = 'No_info_treatment/Vote.html'
     form_model = 'player'
     form_fields = ['vote']
     # include vars_for_template
+    
+    def before_next_page(self):
+        if self.player.iteration > 0:
+            self.player.iteration = 3 - self.player.iteration
+
     def vars_for_template(player):
         public_signal = player.group.str_public_evidence
         #private_signal = player.str_private_evidence
@@ -140,7 +144,6 @@ class Voting(Page):
             opinion2 = opinion2,
             opinion3 = opinion3,
             )
-
 
 class VotingWaitPage(WaitPage):
     after_all_players_arrive = 'set_payoffs'
