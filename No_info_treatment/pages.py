@@ -98,8 +98,8 @@ class Disclosure(Page):
             #private_signal = private_signal,
             )
     def before_next_page(self):
-        if self.player.disclose > 0:
-            self.player.iteration = self.player.iteration + 1
+        if self.player.disclose = 0:
+            self.player.iteration = self.player.iteration - 1
 
 class DisclosureWaitPage(WaitPage):
     def after_all_players_arrive(self): 
