@@ -17,7 +17,7 @@ class Constants(BaseConstants):
     name_in_url = 'No_info_treatment'
     players_per_group = 3
     num_rounds = 2
-    endowment = 100
+    endowment = 110
     multiplier = 1.8
     disclose_cost = 5
     high_payoff = 100

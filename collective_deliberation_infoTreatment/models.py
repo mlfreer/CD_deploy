@@ -22,7 +22,7 @@ class Constants(BaseConstants):
 
     multiplier = 1.8
     disclose_cost = 5
-    high_payoff = 100
+    high_payoff = 110
     low_payoff = 10
     weights_evidences = (0.6, 0.4)
 
