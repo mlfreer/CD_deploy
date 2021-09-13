@@ -263,6 +263,10 @@ class Player(BasePlayer):
     # the idea is that we can repeat the same page but for that we need to record the "past decision"
     iteration = models.IntegerField(initial=0) # This variable records the number of iterations that a player takes to disclose his private information. It can be 0, 1 or 2. zero means that private evidence was never disclose.
   
+    # opinions:
+    opinion_iteration1 = models.IntegerField(default=-2) # first iteration of the opinion extraction
+    opinion_iteration2 = models.IntegerField(default=-2) # second iteration of the opinion extraction
+
     # information variables
     private_evidence = models.IntegerField()
     str_private_evidence = models.StringField(initial='None') # evidence in words (for presentation)

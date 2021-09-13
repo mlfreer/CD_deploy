@@ -101,6 +101,12 @@ class Disclosure(Page):
     def before_next_page(self):
         if self.player.disclose > 0:
             self.player.iteration = self.player.iteration + 1
+        # recording the data about 
+        if self.player.opinion_iteration1 < -1:
+            self.player.opinion_iteration1 = self.player.opinion
+        else:
+            if self.player.opinion_iteration2 < -1:
+                self.player.opinion_iteration2 = self.player.opinion
 
 class DisclosureWaitPage(WaitPage):
     def after_all_players_arrive(self): 
