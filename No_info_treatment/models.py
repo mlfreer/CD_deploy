@@ -259,10 +259,10 @@ class Player(BasePlayer):
     opinion = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Gray'], [0, 'None']], label='Which project do you prefer?', widget=widgets.RadioSelectHorizontal) # change name everywhere else
     disclose = models.IntegerField(choices=[[1, 'Yes'], [0, 'No']], label='Would you like to disclose your private evidence?', widget=widgets.RadioSelectHorizontal, default= 0, blank=True)
     vote = models.IntegerField(choices=[[0, 'Orange'], [1, 'Gray']], label='Which project would you like to get implemented?', widget=widgets.RadioSelectHorizontal)
-    iteration = models.IntegerField(initial=0)
     # you also need to track whether the subject has already disclosed information or not
     # the idea is that we can repeat the same page but for that we need to record the "past decision"
-
+    iteration = models.IntegerField(initial=0) # This variable records the number of iterations that a player takes to disclose his private information. It can be 0, 1 or 2. zero means that private evidence was never disclose.
+  
     # information variables
     private_evidence = models.IntegerField()
     str_private_evidence = models.StringField(initial='None') # evidence in words (for presentation)
