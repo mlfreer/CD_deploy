@@ -20,7 +20,7 @@ class Constants(BaseConstants):
 
 # not sure why do we need the variable?
 #    endowment = 110
-    multiplier = 1.8
+#    multiplier = 1.8
     disclose_cost = 5
     
     high_payoff = 110
