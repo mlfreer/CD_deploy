@@ -6,12 +6,12 @@ LANGUAGE_CODE = 'en'
 SESSION_CONFIGS = [
     dict(
         name='Public_Info_Treatment', 
-        num_demo_participants=3, 
+        num_demo_participants=5, 
         app_sequence=['collective_deliberation_infoTreatment']
         ),
     dict(
         name='No_Public_Info_Treatment', 
-        num_demo_participants=3, 
+        num_demo_participants=5, 
         app_sequence=['No_info_treatment']
         ),    
     ]

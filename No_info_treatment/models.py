@@ -15,14 +15,9 @@ import otree.models
 doc = "The experiment consists of 15 rounds. Before making any decision, subjects will be randomly divided into groups of three players. The groups may change from round to round. Members within the group will be able to exchange information about a task, but the identities, earnings, group membership and decisions will not be revealed to other participants. \nEach group of three participants will be asked to decide whether to invest in a project in each round. Two colors, gray and orange, identify different projects. The computer selects one of the colors with a probability of 50% each. We refer to this color as the state of the world. When a project's color matches the randomly selected color, the project delivers a high payoff. Otherwise, it delivers a small payoff. In the experiment, payoffs are given in an experimental currency unit, converted into US dollars at the end.\nTwo out of three members of each group will receive a private evidence about the state of world color. In one treatment, there is one additional public evidence available to all members. Each evidence matches the color of the state of the world with a 60% probability.  For instance, the state of the world is orange, then each of the private and the public evidences has a 60% probability of being orange and a 40% probability of being gray. \nAfter this, the experiment has three stages. In the first stage,  participants will be able to share opinions about what project the group should invest. They decide on one of the two colors available. In the second stage, participants will be able to disclose their private evidences at a cost E$ 5. They decide whether to disclose their private information. Finally, in the third stage, each group member will be asked to vote for one of the two projects. The project that gets two or more votes becomes the implemented project. After decisions have been made, participants are allowed to know the true state of the world, and the round earnings are determined.\nAt each stage, participants have a screen with click options for each alternative, and circles of color gray or orange constitute the evidences. There is no other form of communication in the experiment. At the end of each round, earnings for that round and states of the world will be displayed.\nEach session is expected to last under 90 minutes, including the payments. Subjects can earn between 10 and 100 experimental dollars (depending on decisions and randomly assigned states of the world), but are expected to earn about $11 USD on average (not including the show-up fee). Total payoff for each subject is determined only by her earnings in one randomly selected round. The computer will randomly pick the payment round for each subject, and the payoff will be displayed to the subject. Each subject will then be paid privately according to the rate 1 experimental dollar = 20 cents USD. Participating subjects will be taken to a Google Form after the experiment to fill out their payment information as well.    \n"
 class Constants(BaseConstants):
     name_in_url = 'No_info_treatment'
-    players_per_group = 3
+    players_per_group = 5
     num_rounds = 15
-
-# not sure why do we need the variable?
-#    endowment = 110
-#    multiplier = 1.8
     disclose_cost = 5
-    
     high_payoff = 110
     low_payoff = 10
     weights_evidences = (0.6, 0.4)
@@ -198,7 +193,8 @@ class Group(BaseGroup):
         # you can only add variables of the same type, i.e. use 0 instead of 0.0 
 
         for p in players:
-            self.gray_votes = self.gray_votes + p.vote
+            if p.vote<0:
+                self.gray_votes = self.gray_votes - p.vote
     
     # this function is good!
     
@@ -213,7 +209,8 @@ class Group(BaseGroup):
         # you can only add variables of the same type, i.e. use 0 instead of 0.0 
 
         for p in players:
-            self.gray_votes = self.gray_votes + p.vote # gray vote is labeled as 1
+            if p.vote<0:
+                self.gray_votes = self.gray_votes - p.vote # gray vote is labeled as 1
         
         if self.gray_votes <= 1:
             self.group_guess = 1 # means Orange
@@ -261,7 +258,7 @@ class Player(BasePlayer):
     # decision variables   
     opinion = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Gray'], [0, 'None']], label='Which project do you prefer?', widget=widgets.RadioSelectHorizontal) # change name everywhere else
     disclose = models.IntegerField(choices=[[1, 'Yes'], [0, 'No']], label='Would you like to disclose your private evidence?', widget=widgets.RadioSelectHorizontal, default= 0, blank=True)
-    vote = models.IntegerField(choices=[[0, 'Orange'], [1, 'Gray']], label='Which project would you like to get implemented?', widget=widgets.RadioSelectHorizontal)
+    vote = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Gray']], label='Which project would you like to get implemented?', widget=widgets.RadioSelectHorizontal)
     # you also need to track whether the subject has already disclosed information or not
     # the idea is that we can repeat the same page but for that we need to record the "past decision"
     iteration = models.IntegerField(initial=0) # This variable records the number of iterations that a player takes to disclose his private information. It can be 0, 1 or 2. zero means that private evidence was never disclose.
