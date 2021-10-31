@@ -289,7 +289,7 @@ class Player(BasePlayer):
         generates random private evidences 
         """
         mynumber = self.id_in_group
-        if mynumber<3:
+        if mynumber<5:
             self.type = 1
             list_choice2 = [self.group.state_of_world, (-1)*self.group.state_of_world]
             random_list = random.choices(list_choice2, weights= Constants.weights_evidences)
