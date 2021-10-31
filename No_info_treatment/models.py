@@ -16,11 +16,14 @@ doc = "The experiment consists of 15 rounds. Before making any decision, subject
 class Constants(BaseConstants):
     name_in_url = 'No_info_treatment'
     players_per_group = 3
-    num_rounds = 2
-    endowment = 110
-    multiplier = 1.8
+    num_rounds = 15
+
+# not sure why do we need the variable?
+#    endowment = 110
+#    multiplier = 1.8
     disclose_cost = 5
-    high_payoff = 100
+    
+    high_payoff = 110
     low_payoff = 10
     weights_evidences = (0.6, 0.4)
 
