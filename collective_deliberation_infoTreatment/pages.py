@@ -191,10 +191,14 @@ page_sequence = [
     OpinionPollWaitPage,
     Disclosure,
     DisclosureWaitPage,
-#    OpinionPoll, # third iteration
-#    OpinionPollWaitPage,
-#    Disclosure,
-#    DisclosureWaitPage, # end of deliberation stage
+    OpinionPoll, # third iteration
+    OpinionPollWaitPage,
+    Disclosure,
+    DisclosureWaitPage, # end of deliberation stage
+    OpinionPoll, # fourth iteration
+    OpinionPollWaitPage,
+    Disclosure,
+    DisclosureWaitPage, # end of deliberation stage
     Voting, 
     VotingWaitPage,
     Results,
