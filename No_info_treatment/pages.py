@@ -162,7 +162,7 @@ class Results(Page):
         guess = player.group.str_group_guess
         return dict(
             votes_gray = votes_gray,
-            votes_orange = 3 - votes_gray,
+            votes_orange = 5 - votes_gray,
             guess = guess,
         )
     pass
