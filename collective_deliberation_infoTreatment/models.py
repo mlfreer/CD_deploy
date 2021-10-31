@@ -78,28 +78,27 @@ class Group(BaseGroup):
     opinions_result1 = models.StringField()
     opinions_result2 = models.StringField()
     opinions_result3 = models.StringField()
+    opinions_result4 = models.StringField()
+    opinions_result5 = models.StringField()
     # im still not sure that we should have it as string, since the decision variables are integers
 
     # disclosure decision
     disclosure_decision1 = models.StringField()
     disclosure_decision2 = models.StringField()
     disclosure_decision3 = models.StringField()
+    disclosure_decision4 = models.StringField()
+    disclosure_decision5 = models.StringField()
 
     # Diclodure information/outcome, what the player is disclosing
     disclosure_information1 = models.StringField(initial = 'None')
     disclosure_information2 = models.StringField(initial = 'None')
     disclosure_information3 = models.StringField(initial = 'None')
+    disclosure_information4 = models.StringField(initial = 'None')
+    disclosure_information5 = models.StringField(initial = 'None')
     
-    # What is this player?
-    #player_id1 = models.IntegerField()
-    #player_id2 = models.IntegerField()
-    #player_id3 = models.IntegerField()
-
     # final votes? yes, these are final votes.
     gray_votes = models.IntegerField()
-    
 
-     
     def get_start(self):
         """ 
         Sets the state of the world and draws the public evidence
@@ -119,12 +118,7 @@ class Group(BaseGroup):
             self.str_public_evidence = 'Orange'
         p_number = []
         
-        #for p in self.get_players(): 
-        #    p.get_mynumber()
-        #    p_number.append(p.MyNumber)
-        #self.player_id1 = p_number[0]
-        #self.player_id2 = p_number[1] 
-        #self.player_id3 = p_number[2]
+   
    
     def get_results_opinion(self):
         """
@@ -141,10 +135,12 @@ class Group(BaseGroup):
             if p.opinion== 0:
                 list_p.append('No answer')
         
-        # saving the results of the opinion
+        # saving the results of the opinio
         self.opinions_result1 = list_p[0]
         self.opinions_result2 = list_p[1]
         self.opinions_result3 = list_p[2]
+        self.opinions_result4 = list_p[3]
+        self.opinions_result5 = list_p[4]
          
 
     def get_results_disclose(self):
@@ -174,11 +170,15 @@ class Group(BaseGroup):
         self.disclosure_decision1 = list_d[0]
         self.disclosure_decision2 = list_d[1]
         self.disclosure_decision3 = list_d[2]
+        self.disclosure_decision4 = list_d[3]
+        self.disclosure_decision5 = list_d[4]
 
         # saving the disclosed information
         self.disclosure_information1 = list_c[0]
         self.disclosure_information2 = list_c[1]
         self.disclosure_information3 = list_c[2]
+        self.disclosure_information4 = list_c[3]
+        self.disclosure_information5 = list_c[4]
 
  
     def get_results_voting(self):
@@ -254,6 +254,8 @@ class Player(BasePlayer):
     # opinions:
     opinion_iteration1 = models.IntegerField(default=-2) # first iteration of the opinion extraction
     opinion_iteration2 = models.IntegerField(default=-2) # second iteration of the opinion extraction
+    opinion_iteration3 = models.IntegerField(default=-2)
+    opinion_iteration4 = models.IntegerField(default=-2)
 
     # information variables
     private_evidence = models.IntegerField()
