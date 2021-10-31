@@ -17,12 +17,6 @@ class Constants(BaseConstants):
     name_in_url = 'collective_deliberation_infoTreatment'
     players_per_group = 5
     num_rounds = 15
-
-# not sure why do we need the endowment thingy?
-#    endowment = cu(100)
-#    multiplier = 1.8
-# multiplier also seems to be empty var
-
     disclose_cost = 5
     high_payoff = 110
     low_payoff = 10
