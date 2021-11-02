@@ -33,6 +33,7 @@ USE_POINTS = False
 DEBUG_INFO = False
 OTREE_PRODUCTION = True
 
+OTREE_AUTH_LEVEL = mama
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
