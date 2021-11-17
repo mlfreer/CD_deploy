@@ -35,8 +35,8 @@ ROOMS = [
 REAL_WORLD_CURRENCY_CODE = ''
 USE_POINTS = False
 
-DEBUG_INFO = True
-OTREE_PRODUCTION = False
+DEBUG_INFO = False
+OTREE_PRODUCTION = True
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
