@@ -13,6 +13,11 @@ SESSION_CONFIGS = [
         name='No_Public_Info_Treatment', 
         num_demo_participants=5, 
         app_sequence=['No_info_treatment']
+        ), 
+    dict(
+        name='Five_Players_per_group_Five_signals', 
+        num_demo_participants=5, 
+        app_sequence=['FivePlayersFiveSignals']
         ),    
     ]
 
@@ -35,7 +40,7 @@ OTREE_PRODUCTION = True
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
-ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
+ADMIN_PASSWORD = environ.get('CollectiveDeliberation')
 
 DEMO_PAGE_INTRO_HTML = """ """
 
