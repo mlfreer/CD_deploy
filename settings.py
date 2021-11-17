@@ -13,6 +13,11 @@ SESSION_CONFIGS = [
         name='No_Public_Info_Treatment', 
         num_demo_participants=5, 
         app_sequence=['No_info_treatment']
+        ), 
+    dict(
+        name='Five_Players_per_group_Five_signals', 
+        num_demo_participants=5, 
+        app_sequence=['FivePlayersFiveSignals']
         ),    
     ]
 
@@ -30,8 +35,8 @@ ROOMS = [
 REAL_WORLD_CURRENCY_CODE = ''
 USE_POINTS = False
 
-DEBUG_INFO = False
-OTREE_PRODUCTION = True
+DEBUG_INFO = True
+OTREE_PRODUCTION = False
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
