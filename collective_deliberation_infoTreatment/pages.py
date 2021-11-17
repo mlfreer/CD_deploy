@@ -66,14 +66,14 @@ class OpinionResults(Page):
         opinion1 = player.group.opinions_result1
         opinion2 = player.group.opinions_result2
         opinion3 = player.group.opinions_result3
-        opinion4 = player.group.opinions_result4
-        opinion5 = player.group.opinions_result5
+        #opinion4 = player.group.opinions_result4
+        #opinion5 = player.group.opinions_result5
         return dict(
             opinion1 = opinion1,
             opinion2 = opinion2,
             opinion3 = opinion3,
-            opinion4 = opinion4,
-            opinion5 = opinion5,
+            #opinion4 = opinion4,
+            #opinion5 = opinion5,
         )
 
     # poll results
@@ -95,15 +95,15 @@ class Disclosure(Page):
         opinion1 = player.group.opinions_result1
         opinion2 = player.group.opinions_result2
         opinion3 = player.group.opinions_result3
-        opinion4 = player.group.opinions_result4
-        opinion5 = player.group.opinions_result5
+        #opinion4 = player.group.opinions_result4
+        #opinion5 = player.group.opinions_result5
         return dict(
             public_signal = public_signal,
             opinion1 = opinion1,
             opinion2 = opinion2,
             opinion3 = opinion3,
-            opinion4 = opinion4,
-            opinion5 = opinion5,
+            #opinion4 = opinion4,
+            #opinion5 = opinion5,
             #private_signal = private_signal,
             )
     def before_next_page(self):
@@ -114,10 +114,10 @@ class Disclosure(Page):
             self.player.opinion_iteration1 = self.player.opinion
         elif self.player.opinion_iteration2 < -1:
             self.player.opinion_iteration2 = self.player.opinion
-        elif self.player.opinion_iteration3 < -1:
-            self.player.opinion_iteration3 = self.player.opinion
-        elif self.player.opinion_iteration4 < -1:
-            self.player.opinion_iteration4 = self.player.opinion
+        #elif self.player.opinion_iteration3 < -1:
+        #    self.player.opinion_iteration3 = self.player.opinion
+        #elif self.player.opinion_iteration4 < -1:
+        #    self.player.opinion_iteration4 = self.player.opinion
 
 class DisclosureWaitPage(WaitPage):
     def after_all_players_arrive(self): 
@@ -132,7 +132,7 @@ class Voting(Page):
     
     def before_next_page(self):
         if self.player.iteration > 0:
-            self.player.iteration = 5 - self.player.iteration
+            self.player.iteration = 3 - self.player.iteration
     # include vars_for_template
     def vars_for_template(player):
         public_signal = player.group.str_public_evidence
@@ -140,20 +140,20 @@ class Voting(Page):
         decision1 = player.group.disclosure_decision1
         decision2 = player.group.disclosure_decision2
         decision3 = player.group.disclosure_decision3
-        decision4 = player.group.disclosure_decision4
-        decision5 = player.group.disclosure_decision5
+        #decision4 = player.group.disclosure_decision4
+        #decision5 = player.group.disclosure_decision5
 
         evidence1 = player.group.disclosure_information1
         evidence2 = player.group.disclosure_information2
         evidence3 = player.group.disclosure_information3
-        evidence4 = player.group.disclosure_information4
-        evidence5 = player.group.disclosure_information5
+        #evidence4 = player.group.disclosure_information4
+        #evidence5 = player.group.disclosure_information5
 
         opinion1 = player.group.opinions_result1
         opinion2 = player.group.opinions_result2
         opinion3 = player.group.opinions_result3
-        opinion4 = player.group.opinions_result4
-        opinion5 = player.group.opinions_result5
+        #opinion4 = player.group.opinions_result4
+        #opinion5 = player.group.opinions_result5
 
         return dict(
             public_signal = public_signal,
@@ -161,18 +161,18 @@ class Voting(Page):
             decision1 = decision1,
             decision2 = decision2,
             decision3 = decision3,
-            decision4 = decision4,
-            decision5 = decision5,
+            #decision4 = decision4,
+            #decision5 = decision5,
             evidence1 = evidence1,
             evidence2 = evidence2,
             evidence3 = evidence3,
-            evidence4 = evidence4,
-            evidence5 = evidence5,
+            #evidence4 = evidence4,
+            #evidence5 = evidence5,
             opinion1 = opinion1,
             opinion2 = opinion2,
             opinion3 = opinion3,
-            opinion4 = opinion4,
-            opinion5 = opinion5,
+            #opinion4 = opinion4,
+            #opinion5 = opinion5,
             )
 
 
@@ -187,7 +187,7 @@ class Results(Page):
         guess = player.group.str_group_guess
         return dict(
             votes_gray = votes_gray,
-            votes_orange = 5 - votes_gray,
+            votes_orange = 3 - votes_gray,
             guess = guess,
         )
     pass
@@ -214,14 +214,14 @@ page_sequence = [
     OpinionPollWaitPage,
     Disclosure,
     DisclosureWaitPage,
-    OpinionPoll, # third iteration
-    OpinionPollWaitPage,
-    Disclosure,
-    DisclosureWaitPage, # end of deliberation stage
-    OpinionPoll, # fourth iteration
-    OpinionPollWaitPage,
-    Disclosure,
-    DisclosureWaitPage, # end of deliberation stage
+    #OpinionPoll, # third iteration
+    #OpinionPollWaitPage,
+    #Disclosure,
+    #DisclosureWaitPage, # end of deliberation stage
+    #OpinionPoll, # fourth iteration
+    #OpinionPollWaitPage,
+    #Disclosure,
+    #DisclosureWaitPage, # end of deliberation stage
     Voting, 
     VotingWaitPage,
     Results,

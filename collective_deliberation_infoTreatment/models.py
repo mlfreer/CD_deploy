@@ -15,7 +15,7 @@ import otree.models
 doc = "The experiment consists of 15 rounds. Before making any decision, subjects will be randomly divided into groups of three players. The groups may change from round to round. Members within the group will be able to exchange information about a task, but the identities, earnings, group membership and decisions will not be revealed to other participants. \nEach group of three participants will be asked to decide whether to invest in a project in each round. Two colors, gray and orange, identify different projects. The computer selects one of the colors with a probability of 50% each. We refer to this color as the state of the world. When a project's color matches the randomly selected color, the project delivers a high payoff. Otherwise, it delivers a small payoff. In the experiment, payoffs are given in an experimental currency unit, converted into US dollars at the end.\nTwo out of three members of each group will receive a private evidence about the state of world color. In one treatment, there is one additional public evidence available to all members. Each evidence matches the color of the state of the world with a 60% probability.  For instance, the state of the world is orange, then each of the private and the public evidences has a 60% probability of being orange and a 40% probability of being gray. \nAfter this, the experiment has three stages. In the first stage,  participants will be able to share opinions about what project the group should invest. They decide on one of the two colors available. In the second stage, participants will be able to disclose their private evidences at a cost E$ 5. They decide whether to disclose their private information. Finally, in the third stage, each group member will be asked to vote for one of the two projects. The project that gets two or more votes becomes the implemented project. After decisions have been made, participants are allowed to know the true state of the world, and the round earnings are determined.\nAt each stage, participants have a screen with click options for each alternative, and circles of color gray or orange constitute the evidences. There is no other form of communication in the experiment. At the end of each round, earnings for that round and states of the world will be displayed.\nEach session is expected to last under 90 minutes, including the payments. Subjects can earn between 10 and 100 experimental dollars (depending on decisions and randomly assigned states of the world), but are expected to earn about $11 USD on average (not including the show-up fee). Total payoff for each subject is determined only by her earnings in one randomly selected round. The computer will randomly pick the payment round for each subject, and the payoff will be displayed to the subject. Each subject will then be paid privately according to the rate 1 experimental dollar = 20 cents USD. Participating subjects will be taken to a Google Form after the experiment to fill out their payment information as well.    \n"
 class Constants(BaseConstants):
     name_in_url = 'collective_deliberation_infoTreatment'
-    players_per_group = 5
+    players_per_group = 3
     num_rounds = 15
     disclose_cost = 5
     high_payoff = 110
@@ -78,23 +78,23 @@ class Group(BaseGroup):
     opinions_result1 = models.StringField()
     opinions_result2 = models.StringField()
     opinions_result3 = models.StringField()
-    opinions_result4 = models.StringField()
-    opinions_result5 = models.StringField()
+    #opinions_result4 = models.StringField()
+    #opinions_result5 = models.StringField()
     # im still not sure that we should have it as string, since the decision variables are integers
 
     # disclosure decision
     disclosure_decision1 = models.StringField()
     disclosure_decision2 = models.StringField()
     disclosure_decision3 = models.StringField()
-    disclosure_decision4 = models.StringField()
-    disclosure_decision5 = models.StringField()
+    #disclosure_decision4 = models.StringField()
+    #disclosure_decision5 = models.StringField()
 
     # Diclodure information/outcome, what the player is disclosing
     disclosure_information1 = models.StringField(initial = 'None')
     disclosure_information2 = models.StringField(initial = 'None')
     disclosure_information3 = models.StringField(initial = 'None')
-    disclosure_information4 = models.StringField(initial = 'None')
-    disclosure_information5 = models.StringField(initial = 'None')
+    #disclosure_information4 = models.StringField(initial = 'None')
+    #disclosure_information5 = models.StringField(initial = 'None')
     
     # final votes? yes, these are final votes.
     gray_votes = models.IntegerField()
@@ -139,8 +139,8 @@ class Group(BaseGroup):
         self.opinions_result1 = list_p[0]
         self.opinions_result2 = list_p[1]
         self.opinions_result3 = list_p[2]
-        self.opinions_result4 = list_p[3]
-        self.opinions_result5 = list_p[4]
+        #self.opinions_result4 = list_p[3]
+        #self.opinions_result5 = list_p[4]
          
 
     def get_results_disclose(self):
@@ -170,15 +170,15 @@ class Group(BaseGroup):
         self.disclosure_decision1 = list_d[0]
         self.disclosure_decision2 = list_d[1]
         self.disclosure_decision3 = list_d[2]
-        self.disclosure_decision4 = list_d[3]
-        self.disclosure_decision5 = list_d[4]
+        #self.disclosure_decision4 = list_d[3]
+        #self.disclosure_decision5 = list_d[4]
 
         # saving the disclosed information
         self.disclosure_information1 = list_c[0]
         self.disclosure_information2 = list_c[1]
         self.disclosure_information3 = list_c[2]
-        self.disclosure_information4 = list_c[3]
-        self.disclosure_information5 = list_c[4]
+        #self.disclosure_information4 = list_c[3]
+        #self.disclosure_information5 = list_c[4]
 
  
     def get_results_voting(self):
@@ -192,7 +192,7 @@ class Group(BaseGroup):
 
         for p in players:
             if p.vote< 0:
-                self.gray_votes = self.gray_votes - p.vote
+                self.gray_votes = self.gray_votes - p.vote # gray votes labeled as -1 
     
     # this function is good!
     
@@ -254,8 +254,8 @@ class Player(BasePlayer):
     # opinions:
     opinion_iteration1 = models.IntegerField(default=-2) # first iteration of the opinion extraction
     opinion_iteration2 = models.IntegerField(default=-2) # second iteration of the opinion extraction
-    opinion_iteration3 = models.IntegerField(default=-2)
-    opinion_iteration4 = models.IntegerField(default=-2)
+    #opinion_iteration3 = models.IntegerField(default=-2)
+    #opinion_iteration4 = models.IntegerField(default=-2)
 
     # information variables
     private_evidence = models.IntegerField()
@@ -291,7 +291,7 @@ class Player(BasePlayer):
         generates random private evidences 
         """
         mynumber = self.id_in_group
-        if mynumber<5:
+        if mynumber<3:
             self.type = 1
             list_choice2 = [self.group.state_of_world, (-1)*self.group.state_of_world]
             random_list = random.choices(list_choice2, weights= Constants.weights_evidences)
