@@ -137,11 +137,10 @@ class Group(BaseGroup):
         list_c = [] # what is this variable for?
 
         for p in self.get_players():
-
             if p.disclose== 0:
                 list_d.append('does not disclose')
                 list_c.append('None')
-            if p.disclose == 1:
+            else:
                 list_d.append('discloses')
                 p.publicized_evidence = p.private_evidence
                 if p.publicized_evidence == -1:
@@ -149,9 +148,6 @@ class Group(BaseGroup):
                 else:
                     list_c.append('Orange')
 
-            else:
-                list_d.append('is an uninformed player')
-                list_c.append('None')
 
         # saving the results of the disclosure
         self.disclosure_decision1 = list_d[0]
@@ -180,7 +176,7 @@ class Group(BaseGroup):
         players = self.get_players()
 
         self.get_results_voting()
-        
+
         # determining the majority choice:
         if self.group_votes>0:
             self.group_guess = 1
