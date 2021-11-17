@@ -91,6 +91,8 @@ class Disclosure(Page):
             self.player.opinion_iteration3 = self.player.opinion
         elif self.player.opinion_iteration4 < -1:
             self.player.opinion_iteration4 = self.player.opinion
+        elif self.player.opinion_iteration5 < -1:
+            self.player.opinion_iteration5 = self.player.opinion
 
 class DisclosureWaitPage(WaitPage):
     def after_all_players_arrive(self): 
@@ -105,7 +107,7 @@ class Voting(Page):
     
     def before_next_page(self):
         if self.player.iteration > 0:
-            self.player.iteration = 5 - self.player.iteration
+            self.player.iteration = 6 - self.player.iteration
 
     def vars_for_template(player):
         public_signal = player.group.str_public_evidence
