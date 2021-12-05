@@ -22,7 +22,7 @@ SESSION_CONFIGS = [
     dict(
         name='Five_Players_per_group_Four_signals', 
         num_demo_participants=5, 
-        app_sequence=['FivePlayerFourSignals']
+        app_sequence=['FivePlayersFourSignals']
         ),    
     ]
 
