@@ -220,8 +220,8 @@ class Player(BasePlayer):
     opinion_iteration1 = models.IntegerField(default=-2) # first iteration of the opinion extraction
     opinion_iteration2 = models.IntegerField(default=-2) # second iteration of the opinion extraction
     opinion_iteration3 = models.IntegerField(default=-2)
-    opinion_iteration4 = models.IntegerField(default=-2)
-    opinion_iteration5 = models.IntegerField(default=-2)
+#    opinion_iteration4 = models.IntegerField(default=-2)
+#    opinion_iteration5 = models.IntegerField(default=-2)
 
     # information variables
     private_evidence = models.IntegerField()
