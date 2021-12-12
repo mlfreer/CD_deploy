@@ -1,0 +1,60 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block content %}
+
+<font size="4">
+    <table style="width:90%" font=5>
+        <tr style="border-bottom:1px solid black">
+            <td> You are player  </td>
+            <td> <b> {{player.MyNumber}} </b> </td>
+        </tr>
+        
+        <tr>
+            <td> Group has chosen the project </td>
+            <td> <b> {{guess}} </b></td>
+        </tr>
+
+        <tr style="border-bottom:1px solid black">
+            <td> Your group's guess is </td>
+            {% if player.group.correct_guess %}
+            <td> <b> Correct </b></td>
+            {% else %}
+            <td> <b> Wrong </b></td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td> Earnings from the project are </td>
+            {% if player.group.correct_guess %}
+            <td> <b> {{Constants.high_payoff}} </b></td>
+            {% else %}
+            <td> <b> {{Constants.low_payoff}} </b></td>
+            {% endif %}
+        </tr>
+
+        <tr style="border-bottom:1px solid black"> 
+            <td> Your costs associated with disclosure </td>
+            {% if player.disclose %}
+            <td> <b> {{Constants.disclose_cost}} </b></td>
+            {% else %}
+            <td> <b> 0 </b></td>
+            {% endif %}
+        </tr>
+
+        <tr style="border-bottom:1px solid black">
+            <td> Your earnings are </td>
+            <td> <b> {{player.earnings}} </b></td>
+        </tr>
+
+        <tr style="border-bottom:1px solid black">
+            <td> </td> 
+            <td> </td> 
+        </tr>
+        <tr align="right">
+            <td> </td>
+            <td> {% next_button %} </td>
+        </tr>
+    </table>
+
+{% endblock %} 
