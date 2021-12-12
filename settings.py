@@ -23,6 +23,11 @@ SESSION_CONFIGS = [
         name='Five_Players_per_group_Four_signals', 
         num_demo_participants=5, 
         app_sequence=['FivePlayersFourSignals']
+        ),
+    dict(
+        name='Five_Players_Four_Signals_Two_Rounds', 
+        num_demo_participants=5, 
+        app_sequence=['FivePFourSTwoR']
         ),    
     ]
 

@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Opinion Poll - results {% endblock %}
+
+{% block content %}
+
+
+<p>
+
+   Player {{player.group.player_id1}} suggests {{player.group.opinions_result1}}
+
+   <br> Player {{player.group.player_id2}} suggests {{player.group.opinions_result2}}
+
+   <br> Player {{player.group.player_id3}} suggests {{player.group.opinions_result3}}
+
+   <br> Player {{player.group.player_id4}} suggests {{player.group.opinions_result4}}
+
+   <br> Player {{player.group.player_id5}} suggests {{player.group.opinions_result5}}
+
+</p>
+
+{% formfields %}
+
+{% next_button %}
+
+{% endblock %}
