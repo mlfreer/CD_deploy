@@ -13,27 +13,22 @@ SESSION_CONFIGS = [
         name='No_Public_Info_Treatment', 
         num_demo_participants=3, 
         app_sequence=['No_info_treatment']
-        ), 
-    dict(
-        name='Five_Players_per_group_Five_signals', 
-        num_demo_participants=5, 
-        app_sequence=['FivePlayersFiveSignals']
         ),
     dict(
-        name='Five_Players_per_group_Four_signals', 
+        name='Five_Players_Three_Signals_TwoRounds_NoInfo', 
         num_demo_participants=5, 
-        app_sequence=['FivePlayersFourSignals']
+        app_sequence=['FivePThreeSTwoR_NoInfo']
         ),
     dict(
-        name='Five_Players_Four_Signals_Two_Rounds', 
+        name='Five_Players_Four_Signals_TwoRounds_NoInfo', 
         num_demo_participants=5, 
-        app_sequence=['FivePFourSTwoR']
-        ),   
+        app_sequence=['FivePFourSTwoR_NoInfo']
+        ),
     dict(
-        name='Five_Players_Three_Signals_Two_Rounds', 
+        name='Five_Players_Three_Signals_TwoRounds_Info', 
         num_demo_participants=5, 
-        app_sequence=['FivePThreeSTwoR']
-        ), 
+        app_sequence=['FivePThreeSTwoR_Info']
+        ),
     ]
 
 ROOMS = [
