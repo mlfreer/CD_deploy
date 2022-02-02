@@ -13,7 +13,7 @@ import random
 import otree.models
 
 
-doc = "The experiment consists of 15 rounds. Before making any decision, subjects will be randomly divided into groups of three players. The groups may change from round to round. Members within the group will be able to exchange information about a task, but the identities, earnings, group membership and decisions will not be revealed to other participants. \nEach group of three participants will be asked to decide whether to invest in a project in each round. Two colors, gray and orange, identify different projects. The computer selects one of the colors with a probability of 50% each. We refer to this color as the state of the world. When a project's color matches the randomly selected color, the project delivers a high payoff. Otherwise, it delivers a small payoff. In the experiment, payoffs are given in an experimental currency unit, converted into US dollars at the end.\nTwo out of three members of each group will receive a private evidence about the state of world color. In one treatment, there is one additional public evidence available to all members. Each evidence matches the color of the state of the world with a 60% probability.  For instance, the state of the world is orange, then each of the private and the public evidences has a 60% probability of being orange and a 40% probability of being gray. \nAfter this, the experiment has three stages. In the first stage,  participants will be able to share opinions about what project the group should invest. They decide on one of the two colors available. In the second stage, participants will be able to disclose their private evidences at a cost E$ 5. They decide whether to disclose their private information. Finally, in the third stage, each group member will be asked to vote for one of the two projects. The project that gets two or more votes becomes the implemented project. After decisions have been made, participants are allowed to know the true state of the world, and the round earnings are determined.\nAt each stage, participants have a screen with click options for each alternative, and circles of color gray or orange constitute the evidences. There is no other form of communication in the experiment. At the end of each round, earnings for that round and states of the world will be displayed.\nEach session is expected to last under 90 minutes, including the payments. Subjects can earn between 10 and 100 experimental dollars (depending on decisions and randomly assigned states of the world), but are expected to earn about $11 USD on average (not including the show-up fee). Total payoff for each subject is determined only by her earnings in one randomly selected round. The computer will randomly pick the payment round for each subject, and the payoff will be displayed to the subject. Each subject will then be paid privately according to the rate 1 experimental dollar = 20 cents USD. Participating subjects will be taken to a Google Form after the experiment to fill out their payment information as well.    \n"
+doc = "The experiment consists of 15 rounds. Before making any decision, subjects will be randomly divided into groups of three players. The groups may change from round to round. Members within the group will be able to exchange information about a task, but the identities, earnings, group membership and decisions will not be revealed to other participants. \nEach group of three participants will be asked to decide whether to invest in a project in each round. Two colors, purple and orange, identify different projects. The computer selects one of the colors with a probability of 50% each. We refer to this color as the state of the world. When a project's color matches the randomly selected color, the project delivers a high payoff. Otherwise, it delivers a small payoff. In the experiment, payoffs are given in an experimental currency unit, converted into US dollars at the end.\nTwo out of three members of each group will receive a private evidence about the state of world color. In one treatment, there is one additional public evidence available to all members. Each evidence matches the color of the state of the world with a 60% probability.  For instance, the state of the world is orange, then each of the private and the public evidences has a 60% probability of being orange and a 40% probability of being purple. \nAfter this, the experiment has three stages. In the first stage,  participants will be able to share opinions about what project the group should invest. They decide on one of the two colors available. In the second stage, participants will be able to disclose their private evidences at a cost E$ 5. They decide whether to disclose their private information. Finally, in the third stage, each group member will be asked to vote for one of the two projects. The project that gets two or more votes becomes the implemented project. After decisions have been made, participants are allowed to know the true state of the world, and the round earnings are determined.\nAt each stage, participants have a screen with click options for each alternative, and circles of color purple or orange constitute the evidences. There is no other form of communication in the experiment. At the end of each round, earnings for that round and states of the world will be displayed.\nEach session is expected to last under 90 minutes, including the payments. Subjects can earn between 10 and 100 experimental dollars (depending on decisions and randomly assigned states of the world), but are expected to earn about $11 USD on average (not including the show-up fee). Total payoff for each subject is determined only by her earnings in one randomly selected round. The computer will randomly pick the payment round for each subject, and the payoff will be displayed to the subject. Each subject will then be paid privately according to the rate 1 experimental dollar = 20 cents USD. Participating subjects will be taken to a Google Form after the experiment to fill out their payment information as well.    \n"
 class Constants(BaseConstants):
     name_in_url = 'FivePFourSTwoR_NoInfo'
     
@@ -52,7 +52,7 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
 
-    # state of the world: +1 = Orange, -1 = Gray
+    # state of the world: +1 = Orange, -1 = Purple
     state_of_world = models.IntegerField()
 
     # Public evidence
@@ -87,13 +87,13 @@ class Group(BaseGroup):
     disclosure_information5 = models.StringField(initial = 'None')
 
     # final votes? yes, these are final votes.
-    gray_votes = models.IntegerField()
+    purple_votes = models.IntegerField()
     # counting votes:
     group_votes = models.IntegerField(initial=0)
      
     def get_start(self):
         # generating the state of the world
-        self.state_of_world = random.choice([-1, 1]) # -1 means Gray  and 1 means Orange
+        self.state_of_world = random.choice([-1, 1]) # -1 means Purple  and 1 means Orange
         
         # generating the piece of public evidence
         list_choice = [self.state_of_world, (-1)*self.state_of_world] 
@@ -101,7 +101,7 @@ class Group(BaseGroup):
         self.public_evidence = random_list[0]
 
         if self.public_evidence == -1 : # here we are simply defining the public evidence in words for presentation
-            self.str_public_evidence = 'Gray'
+            self.str_public_evidence = 'Purple'
         else:
             self.str_public_evidence = 'Orange'
         p_number = []
@@ -118,7 +118,7 @@ class Group(BaseGroup):
             if p.opinion== 1:
                 list_p.append('Orange')
             if p.opinion== -1:
-                list_p.append('Gray')
+                list_p.append('Purple')
             if p.opinion== 0:
                 list_p.append('Indifferent')        
         # saving the results of the opinion
@@ -144,7 +144,7 @@ class Group(BaseGroup):
                 list_d.append('discloses')
                 p.publicized_evidence = p.private_evidence
                 if p.publicized_evidence == -1:
-                    list_c.append('Gray')
+                    list_c.append('Purple')
                 else:
                     list_c.append('Orange')
 
@@ -183,7 +183,7 @@ class Group(BaseGroup):
             self.str_group_guess = 'Orange'  
         else:
             self.group_guess = -1
-            self.str_group_guess = 'Gray'      
+            self.str_group_guess = 'Purple'      
         
         # checking the group guess:
         if self.group_guess == self.state_of_world:
@@ -209,9 +209,9 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # decision variables   
-    opinion = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Gray'], [0, 'Indifferent']], label='Which project do you prefer?', widget=widgets.RadioSelectHorizontal)
+    opinion = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Purple'], [0, 'Indifferent']], label='Which project do you prefer?', widget=widgets.RadioSelectHorizontal)
     disclose = models.IntegerField(choices=[[1, 'Yes'], [0, 'No']], label='Would you like to disclose your private evidence?', widget=widgets.RadioSelectHorizontal, default= 0, blank=True)
-    vote = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Gray']], label='Which project would you like to get implemented?', widget=widgets.RadioSelectHorizontal)
+    vote = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Purple']], label='Which project would you like to get implemented?', widget=widgets.RadioSelectHorizontal)
 
     # tracking the dynamics of disclosure
     iteration = models.IntegerField(initial=0) # This variable records the number of iterations that a player takes to disclose his private information. It can be 0, 1 or 2. zero means that private evidence was never disclose.
@@ -258,7 +258,7 @@ class Player(BasePlayer):
             random_list = random.choices(list_choice2, weights= Constants.weights_evidences)
             self.private_evidence = random_list[0]
             if self.private_evidence == -1:
-                self.str_private_evidence = 'Gray'
+                self.str_private_evidence = 'Purple'
             if self.private_evidence == 1:
                 self.str_private_evidence = 'Orange'
 
