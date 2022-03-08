@@ -18,7 +18,7 @@ class Constants(BaseConstants):
     name_in_url = 'FivePThreeSTwoR_Info'
     
     players_per_group = 5
-    num_of_informed_voters=4
+    num_of_informed_voters=3
 
     num_rounds = 15
     disclose_cost = 5
