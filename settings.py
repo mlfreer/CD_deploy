@@ -29,6 +29,11 @@ SESSION_CONFIGS = [
         num_demo_participants=5, 
         app_sequence=['FivePThreeSTwoR_Info']
         ),
+    dict(
+        name='Five_Players_Four_Signals_TwoRounds_Info', 
+        num_demo_participants=5, 
+        app_sequence=['FivePFourSTwoR_Info']
+        ),
     ]
 
 ROOMS = [
