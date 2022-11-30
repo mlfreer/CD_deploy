@@ -52,7 +52,7 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
 
-    # state of the world: +1 = Orange, -1 = Gray
+    # state of the world: +1 = Orange, -1 = Purple
     state_of_world = models.IntegerField()
 
     # Public evidence
@@ -93,7 +93,7 @@ class Group(BaseGroup):
      
     def get_start(self):
         # generating the state of the world
-        self.state_of_world = random.choice([-1, 1]) # -1 means Gray  and 1 means Orange
+        self.state_of_world = random.choice([-1, 1]) # -1 means Purple  and 1 means Orange
         
         # generating the piece of public evidence
         list_choice = [self.state_of_world, (-1)*self.state_of_world] 
@@ -101,7 +101,7 @@ class Group(BaseGroup):
         self.public_evidence = random_list[0]
 
         if self.public_evidence == -1 : # here we are simply defining the public evidence in words for presentation
-            self.str_public_evidence = 'Gray'
+            self.str_public_evidence = 'Purple'
         else:
             self.str_public_evidence = 'Orange'
         p_number = []
@@ -118,7 +118,7 @@ class Group(BaseGroup):
             if p.opinion== 1:
                 list_p.append('Orange')
             if p.opinion== -1:
-                list_p.append('Gray')
+                list_p.append('Purple')
             if p.opinion== 0:
                 list_p.append('Indifferent')        
         # saving the results of the opinion
@@ -144,7 +144,7 @@ class Group(BaseGroup):
                 list_d.append('discloses')
                 p.publicized_evidence = p.private_evidence
                 if p.publicized_evidence == -1:
-                    list_c.append('Gray')
+                    list_c.append('Purple')
                 else:
                     list_c.append('Orange')
 
@@ -183,7 +183,7 @@ class Group(BaseGroup):
             self.str_group_guess = 'Orange'  
         else:
             self.group_guess = -1
-            self.str_group_guess = 'Gray'      
+            self.str_group_guess = 'Purple'      
         
         # checking the group guess:
         if self.group_guess == self.state_of_world:
@@ -209,9 +209,9 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # decision variables   
-    opinion = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Gray'], [0, 'Indifferent']], label='Which project do you prefer?', widget=widgets.RadioSelectHorizontal)
+    opinion = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Purple'], [0, 'Indifferent']], label='Which project do you prefer?', widget=widgets.RadioSelectHorizontal)
     disclose = models.IntegerField(choices=[[1, 'Yes'], [0, 'No']], label='Would you like to disclose your private evidence?', widget=widgets.RadioSelectHorizontal, default= 0, blank=True)
-    vote = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Gray']], label='Which project would you like to get implemented?', widget=widgets.RadioSelectHorizontal)
+    vote = models.IntegerField(choices=[[1, 'Orange'], [-1, 'Purple']], label='Which project would you like to get implemented?', widget=widgets.RadioSelectHorizontal)
 
     # tracking the dynamics of disclosure
     iteration = models.IntegerField(initial=0) # This variable records the number of iterations that a player takes to disclose his private information. It can be 0, 1 or 2. zero means that private evidence was never disclose.
@@ -258,7 +258,7 @@ class Player(BasePlayer):
             random_list = random.choices(list_choice2, weights= Constants.weights_evidences)
             self.private_evidence = random_list[0]
             if self.private_evidence == -1:
-                self.str_private_evidence = 'Gray'
+                self.str_private_evidence = 'Purple'
             if self.private_evidence == 1:
                 self.str_private_evidence = 'Orange'
 
